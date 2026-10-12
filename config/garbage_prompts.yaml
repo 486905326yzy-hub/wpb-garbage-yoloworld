@@ -1,0 +1,71 @@
+version: 1
+output_class: garbage
+output_class_id: 0
+
+# Short object-only prompts are intentionally mixed with scene prompts.  The
+# detector therefore does not depend on the white product-photo background in
+# the reference sheet and can be tested directly on different real floors.
+classes:
+  chips_can:
+    min_confidence: 0.25
+    prompts:
+      - potato chips can
+      - cylindrical chips tube
+      - snack can
+      - discarded chips can
+
+  cookie_box:
+    min_confidence: 0.25
+    prompts:
+      - cookie box
+      - box of cookies
+      - cookie package
+      - discarded snack box
+
+  iced_tea_bottle:
+    min_confidence: 0.25
+    prompts:
+      - iced tea bottle
+      - tea drink bottle
+      - yellow drink bottle
+      - discarded tea bottle
+
+  cola_bottle:
+    min_confidence: 0.25
+    prompts:
+      - cola bottle
+      - soda bottle
+      - brown soft drink bottle
+      - discarded cola bottle
+
+  shampoo_bottle:
+    min_confidence: 0.25
+    prompts:
+      - shampoo bottle
+      - blue shampoo bottle
+      - toiletry bottle
+      - discarded shampoo bottle
+
+  apple:
+    min_confidence: 0.25
+    prompts:
+      - apple
+      - red apple
+      - discarded apple
+      - apple on the floor
+
+  banana:
+    min_confidence: 0.25
+    prompts:
+      - banana
+      - yellow banana
+      - discarded banana
+      - banana on the floor
+
+  paper_ball:
+    min_confidence: 0.18
+    prompts:
+      - crumpled paper ball
+      - paper ball
+      - white paper wad
+      - crumpled paper on the floor

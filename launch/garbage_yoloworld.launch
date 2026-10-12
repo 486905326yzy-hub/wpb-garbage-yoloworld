@@ -1,0 +1,37 @@
+<launch>
+  <!-- This launch never starts Kinect, navigation, or the owner-search task. -->
+  <arg name="image_topic" default="/kinect2/qhd/image_color_rect" />
+  <!-- Required: absolute path to an already-downloaded Ultralytics YOLO-World checkpoint. -->
+  <arg name="model_path" />
+  <arg name="prompt_config" default="$(find garbage_yoloworld)/config/garbage_prompts.yaml" />
+  <arg name="device" default="cuda:0" />
+  <arg name="conf" default="0.10" />
+  <arg name="imgsz" default="640" />
+  <arg name="process_every_n" default="3" />
+  <arg name="warmup" default="true" />
+
+  <node pkg="garbage_yoloworld" type="garbage_yoloworld_node.py"
+        name="garbage_yoloworld" output="screen" required="true">
+    <param name="image_topic" value="$(arg image_topic)" />
+    <param name="model_path" value="$(arg model_path)" />
+    <param name="prompt_config" value="$(arg prompt_config)" />
+    <param name="device" value="$(arg device)" />
+    <param name="require_gpu" value="true" />
+    <param name="conf" value="$(arg conf)" />
+    <param name="imgsz" value="$(arg imgsz)" />
+    <param name="iou" value="0.45" />
+    <param name="canonical_nms_iou" value="0.45" />
+    <param name="confirmation_hits" value="2" />
+    <param name="confirmation_iou" value="0.30" />
+    <param name="confirmation_max_age" value="0.75" />
+    <param name="max_det" value="50" />
+    <param name="process_every_n" value="$(arg process_every_n)" />
+    <param name="warmup" value="$(arg warmup)" />
+    <param name="publish_debug" value="true" />
+    <remap from="~detections" to="/garbage_detection" />
+    <remap from="~debug_image" to="/garbage_detection/debug_image" />
+    <remap from="~details" to="/garbage_detection/details" />
+    <remap from="~has_garbage" to="/garbage_detection/has_garbage" />
+    <remap from="~pause" to="/garbage_detection/pause" />
+  </node>
+</launch>

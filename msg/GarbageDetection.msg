@@ -1,0 +1,11 @@
+string class_name
+int32 class_id
+string subtype
+string prompt
+float32 score
+int32 xmin
+int32 ymin
+int32 xmax
+int32 ymax
+int32 center_x
+int32 center_y
